@@ -18,7 +18,12 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {picker} from '../components/style';
 import { Ionicons } from '@expo/vector-icons';
 
-const GenderPicker = ({value}) => {
+const GenderPicker = ({value, getData}) => {
+  console.log(getData, 'show')
+
+  const something = () => {
+    getData(pickerValue, 'child')
+  }
 
   const items = ['None','Female', 'Male'];
   const [isModalVisible, setModalVisible] = useState(false);
@@ -55,30 +60,30 @@ const GenderPicker = ({value}) => {
   console.log(pickerValue)
 
   return (
-    <TouchableOpacity onPress={toggleModal}>
+    <TouchableOpacity onPress={toggleModal, something} key={items.key}>
       <View style={personalCSS.parameters_view} >
         <View style={picker.imgContainer}>
-         {renderImage()}
+          {renderImage()}
         </View>
         <Text
           style={personalCSS.parameters_text}>
           Gender
         </Text>
 
-          <Pressable onPress={toggleModal}>
+        <Pressable onPress={toggleModal}>
             <View style={picker.inputBox} pointerEvents='none'>
               <TextInput
                 style={picker.textInput}
                 placeholderTextColor='#2596be'
                 placeholder={pickerValue}
-                onChangeText={pickerValue}
+                onChangeText={() => pickerValue}
                 caretHidden={true}
                 editable={false}
                 />
             </View>
           </Pressable>
 
-        <Modal isVisible={isModalVisible} transparent={true}>
+        <Modal isVisible={isModalVisible}>
           <View style={picker.container}>
             <View style={picker.pickerContainer}>
               <View style={picker.header}>
@@ -111,7 +116,7 @@ const GenderPicker = ({value}) => {
                 onValueChange={(value)=> setPickerValue(value)}
               >
                 {items.map((item)=> (
-                  <Picker.Item value={item} label={item} color='#04303d'/>
+                  <Picker.Item value={item} key={item} label={item} color='#04303d'/>
                 ))}
               </Picker>
             </View>

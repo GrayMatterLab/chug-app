@@ -16,7 +16,7 @@ import { NeuInput, NeuView } from 'react-native-neu-element';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {picker} from '../components/style';
 
-const ActivityPicker = ({value}) => {
+const ActivityPicker = ({value, key}) => {
 
   const items =['Just Sleep', '30 min/wk', '1 hour/week', '2 hour/week', '3 hour/week', '4+ hour/week'];
 
@@ -40,7 +40,7 @@ const ActivityPicker = ({value}) => {
   }, [value]);
 
   return (
-    <TouchableOpacity onPress={toggleModal}>
+    <TouchableOpacity onPress={toggleModal} key={items.key}>
     <View style={personalCSS.parameters_view} >
       <View style={picker.imgContainer}>
         <Image source={require('../assets/images/onboarding-img3.png')} style={picker.img}/>
@@ -56,7 +56,7 @@ const ActivityPicker = ({value}) => {
               style={picker.textInput}
               placeholderTextColor='#2596be'
               placeholder={pickerValue}
-              onChangeText={pickerValue}
+              onChangeText={() => pickerValue}
               caretHidden={true}
               editable={false}
               />
@@ -96,7 +96,7 @@ const ActivityPicker = ({value}) => {
               onValueChange={(value)=> setPickerValue(value)}
             >
               {items.map((item)=> (
-                <Picker.Item value={item} label={item} color='#04303d'/>
+                <Picker.Item value={item} key={item} label={item} color='#04303d'/>
               ))}
             </Picker>
           </View>

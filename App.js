@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
-import {Text, View } from 'react-native';
+import {Text, View , LogBox} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 // import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -25,6 +25,8 @@ export default function App() {
       }
     })
   }, [])
+
+  LogBox.ignoreAllLogs(true)
 
   // if (isFirstLaunch === null) {
   //   return null;

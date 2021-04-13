@@ -15,7 +15,7 @@ import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {picker} from '../components/style';
 
-const AgePicker = ({value}) => {
+const AgePicker = ({value, key}) => {
   const items =[];
 
   for (var i = 4; i <= 100; i++) {
@@ -57,7 +57,7 @@ const AgePicker = ({value}) => {
                 style={picker.textInput}
                 placeholderTextColor='#2596be'
                 placeholder={pickerValue}
-                onChangeText={pickerValue}
+                onChangeText={() => pickerValue}
                 caretHidden={true}
                 editable={false}
                 />
@@ -97,7 +97,7 @@ const AgePicker = ({value}) => {
                 onValueChange={(value)=> setPickerValue(value)}
               >
                 {items.map((item)=> (
-                  <Picker.Item value={item} label={item} color='#04303d'/>
+                  <Picker.Item value={item} key={item} label={item} color='#04303d'/>
                 ))}
               </Picker>
             </View>

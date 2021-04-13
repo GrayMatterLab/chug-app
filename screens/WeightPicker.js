@@ -14,7 +14,7 @@ import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {picker} from '../components/style';
 
-const WeightPicker = ({value}) => {
+const WeightPicker = ({value, key}) => {
 
   const items =[];
 
@@ -46,7 +46,7 @@ const WeightPicker = ({value}) => {
 
 
   return (
-    <TouchableOpacity onPress={toggleModal}>
+    <TouchableOpacity onPress={toggleModal} key={items.key}>
       <View style={personalCSS.parameters_view} >
         <View style={picker.imgContainer}>
           <Image source={require('../assets/images/onboarding-img3.png')} style={picker.img}/>
@@ -62,7 +62,7 @@ const WeightPicker = ({value}) => {
                 style={picker.textInput}
                 placeholderTextColor='#2596be'
                 placeholder={pickerValue}
-                onChangeText={pickerValue}
+                onChangeText={() => pickerValue}
                 caretHidden={true}
                 editable={false}
                 />
@@ -102,7 +102,7 @@ const WeightPicker = ({value}) => {
                 onValueChange={(value)=> setPickerValue(value)}
               >
                 {items.map((item)=> (
-                  <Picker.Item value={item} label={item} color='#04303d'/>
+                  <Picker.Item value={item} key={item} label={item} color='#04303d'/>
                 ))}
               </Picker>
             </View>

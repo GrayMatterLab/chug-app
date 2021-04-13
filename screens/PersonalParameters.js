@@ -14,25 +14,18 @@ import BreastfeedingPicker from './BreastfeedingPicker';
 import AppleHealthPicker from './AppleHealthPicker';
 import * as Font from 'expo-font'
 
-const PersonalParameters = ({navigation}) => {
+const PersonalParameters = ({navigation, value}) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
+  const [data, setData] = useState(null)
 
-  // const NeuMorph = ({children, size, style}) => {
-  //   return (
-  //     <View style={picker.topShadow}>
-  //       <View style={picker.bottomShadow}>
-  //         <View style={[
-  //           picker.inner, style
-  //         ]}>
-  //           {children}
-  //         </View>
-  //       </View>
-  //     </View>
-  //   )
-  // }
+  const getData = (info) => {
+    console.log(info, 'parent')
+    setData(info)
+  }
 
+  console.log(data, 'data yo')
 // useEffect(() => {
 //   (async () => await Font.loadAsync({
 //     ComfortaaRegular: require('../assets/fonts/Comfortaa-Regular.ttf'),
@@ -46,6 +39,7 @@ const PersonalParameters = ({navigation}) => {
 //   }))();
 //    }, [])
 
+
   return (
     <SafeAreaView style={personalCSS.container}>
 
@@ -54,22 +48,27 @@ const PersonalParameters = ({navigation}) => {
        </View>
 
       <ScrollView style={personalCSS.box2}>
-        <NameInput/>
-        <GenderPicker/>
-        <AgePicker/>
-        <WeightPicker/>
-        <ActivityPicker/>
-        <PregnantPicker/>
-        <BreastfeedingPicker/>
-        <AppleHealthPicker/>
+        <NameInput />
+
+        <GenderPicker getData={getData}/>
+
+        <AgePicker />
+        <WeightPicker />
+        <ActivityPicker />
+        <PregnantPicker />
+        <BreastfeedingPicker />
+        <AppleHealthPicker />
       </ScrollView>
 
-
         <View style={personalCSS.bottomBar}>
-          <TouchableOpacity style={{alignSelf: 'flex-end', padding: 20}} onPress={()=> navigation.navigate('PersonalIntake')}>
+          <TouchableOpacity style={{alignSelf: 'flex-end', padding: 20}} onPress={()=> navigation.navigate('PersonalIntake', {
+            genderType: data,
+            otherParams: 'anything i want'
+          })}>
             <Text style={{color: 'black', fontSize: 18}}>Next</Text>
           </TouchableOpacity>
         </View>
+
     </SafeAreaView>
   );
 }

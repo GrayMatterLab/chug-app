@@ -11,15 +11,18 @@ import WeightPicker from './WeightPicker';
 import PregnantPicker from './PregnantPicker';
 import BreastfeedingPicker from './BreastfeedingPicker';
 import AppleHealthPicker from './AppleHealthPicker';
-import * as Font from 'expo-font'
+import * as Font from 'expo-font';
 
-const PersonalIntake = ({navigation, value}) => {
+
+const PersonalIntake = ({navigation, value, route}) => {
+
+  const {genderType, otherParams} = route.params;
 
   return (
     <SafeAreaView style={intakeCSS.container}>
 
         <View>
-          <Text  style={intakeCSS.title} >Welcome,  {'NAME!'}</Text>
+          <Text  style={intakeCSS.title} >Welcome,  {genderType}</Text>
         </View>
 
 
