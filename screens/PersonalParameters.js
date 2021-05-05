@@ -18,14 +18,49 @@ const PersonalParameters = ({navigation, value}) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
-  const [data, setData] = useState(null)
-
-  const getData = (info) => {
-    console.log(info, 'parent')
-    setData(info)
+  const [nameData, setNameData] = useState(null);
+  const getName = (info) => {
+    console.log(info, 'parent');
+    setNameData(info);
   }
 
-  console.log(data, 'data yo')
+  const [genderData, setGenderData] = useState(null)
+  const getGender = (info) => {
+    console.log(info, 'parent');
+    setGenderData(info);
+  }
+
+  const [weightData, setWeightData] = useState(null);
+  const getWeight = (info) => {
+    console.log(info, 'parent');
+    setWeightData(info);
+  }
+
+  const [activityData, setActivityData] = useState(null);
+  const getActivity = (info) => {
+    console.log(info, 'parent');
+    setActivityData(info);
+  }
+
+  const [pregnancyData, setPregnancyData] = useState(false);
+  const getPregnancyInfo = (info) => {
+    console.log(info, 'parent');
+    setPregnancyData(info);
+  }
+
+  const [BreastfeedingData, setBreastfeedingData] = useState(false);
+  const getBreastfeedingInfo = (info) => {
+    console.log(info, 'parent');
+    setBreastfeedingData(info);
+  }
+  const [AppleHealthData, setAppleHealthData] = useState(false);
+  const getAppleHealthInfo = (info) => {
+    console.log(info, 'parent');
+    setAppleHealthData(info);
+  }
+
+
+
 // useEffect(() => {
 //   (async () => await Font.loadAsync({
 //     ComfortaaRegular: require('../assets/fonts/Comfortaa-Regular.ttf'),
@@ -48,22 +83,25 @@ const PersonalParameters = ({navigation, value}) => {
        </View>
 
       <ScrollView style={personalCSS.box2}>
-        <NameInput />
-
-        <GenderPicker getData={getData}/>
-
+        <NameInput getName={getName}/>
+        <GenderPicker getGender={getGender}/>
         <AgePicker />
-        <WeightPicker />
-        <ActivityPicker />
-        <PregnantPicker />
-        <BreastfeedingPicker />
-        <AppleHealthPicker />
+        <WeightPicker getWeight={getWeight}/>
+        <ActivityPicker getActivity={getActivity}/>
+        <PregnantPicker getPregnancyInfo={getPregnancyInfo}/>
+        <BreastfeedingPicker getBreastfeedingInfo={getBreastfeedingInfo}/>
+        {/* <AppleHealthPicker getAppleHealthInfo={getAppleHealthInfo}/> */}
       </ScrollView>
 
         <View style={personalCSS.bottomBar}>
           <TouchableOpacity style={{alignSelf: 'flex-end', padding: 20}} onPress={()=> navigation.navigate('PersonalIntake', {
-            genderType: data,
-            otherParams: 'anything i want'
+            genderType: genderData,
+            nameType: nameData,
+            weightType: weightData,
+            activityType: activityData,
+            pregnancyType: pregnancyData,
+            breastfeedingType: BreastfeedingData,
+            appleHealthType: AppleHealthData
           })}>
             <Text style={{color: 'black', fontSize: 18}}>Next</Text>
           </TouchableOpacity>

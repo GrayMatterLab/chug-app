@@ -8,13 +8,16 @@ import {
   Switch,
   Button} from 'react-native';
 import {personalCSS} from '../components/style';
-// import { NeuSwitch } from 'react-native-neu-element';
 import {picker} from '../components/style';
 
-const PregnantPicker = ({value}) => {
+const PregnantPicker = ({value, getPregnancyInfo}) => {
 
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+  const pregnancyInfo = () => {
+    getPregnancyInfo(value, 'preg-picker')
+  }
 
   const onSelect = (value) => {
     console.log(value)
@@ -39,7 +42,7 @@ const PregnantPicker = ({value}) => {
           style={personalCSS.parameters_text}>
           Pregnant
         </Text>
-        <View style={picker.switchBox}>
+        <View style={picker.switchBox} >
           <Switch
             trackColor={{ false: "#f4f3f4", true: '#2596be' }}
             thumbColor={isEnabled ? "white" : "white"}
@@ -48,6 +51,7 @@ const PregnantPicker = ({value}) => {
             value={isEnabled}
             style={picker.switch}
             onSelect={(value)=> setIsEnabled(isEnabled)}
+            onChange={(value)=> getPregnancyInfo(!isEnabled)}
           />
         </View>
       </View>

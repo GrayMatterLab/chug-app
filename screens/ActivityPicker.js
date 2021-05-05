@@ -16,13 +16,17 @@ import { NeuInput, NeuView } from 'react-native-neu-element';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {picker} from '../components/style';
 
-const ActivityPicker = ({value, key}) => {
+const ActivityPicker = ({value, getActivity}) => {
+  console.log(getActivity)
 
-  const items =['Just Sleep', '30 min/wk', '1 hour/week', '2 hour/week', '3 hour/week', '4+ hour/week'];
+  const items =['Just Sleep', '30 min/week', '1 hour/week', '2 hour/week', '3 hour/week', '4+ hour/week'];
 
   const [isModalVisible, setModalVisible] = useState(false);
-
   const [pickerValue, setPickerValue] = useState('');
+
+  const activityInfo = () => {
+    getActivity(pickerValue, 'child')
+  }
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -83,6 +87,7 @@ const ActivityPicker = ({value, key}) => {
                 onPress={()=> {
                   onSelect(pickerValue);
                   toggleModal();
+                  activityInfo();
                   }}>
                 <Icon
                   name='done'

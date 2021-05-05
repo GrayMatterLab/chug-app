@@ -12,27 +12,45 @@ import {
   Button} from 'react-native';
 import {personalCSS} from '../components/style';
 
-const NameInput = () => {
+const NameInput = ({value, getName}) => {
+  const [textInput, setTextInput] = useState('');
 
-  const [text, setText] = useState('');
+  console.log(getName, 'name');
 
-  console.log(text)
+  const nameInfo = () => {
+    getName(textInput, 'nameInput')
+  }
+
+  // const handleValueChange = () => {
+  //   setTextInput(value)
+  // }
+
+  // useEffect(() => {
+  //   handleValueChange();
+  // }, [textInput]);
+
+  useEffect(()=> {
+    getName(textInput);
+    console.log(textInput, 'input');
+  }, [textInput]);
+
+  console.log(textInput)
+
   return (
-    <TouchableOpacity>
-      <View style={personalCSS.parameters_view} >
+    <View>
+      <View style={personalCSS.parameters_view}>
         <Text
-          style={[personalCSS.parameters_text, {marginLeft: 20}]}>
+          style={[personalCSS.parameters_text, {marginLeft: 20, paddingRight: 30}]}>
           Name
         </Text>
         <TextInput
-          style={{marginRight: 20, borderBottomWidth: 1, borderBottomColor:'#00CCFF', width: '60%', color:'#2596be', fontSize:20,}}
-          placeholder='Type your name here...'
-          onChangeText={text => setText(text)}
-          defaultValue={text}
+          style={{ borderBottomWidth: 1, borderBottomColor:'#00CCFF', color:'#2596be', fontSize:20, flex: 1, marginRight: 20}}
+          placeholder='Enter your first name...'
+          onChangeText={value => setTextInput(value)}
         />
 
       </View>
-    </TouchableOpacity>
+    </View>
   )
 }
 

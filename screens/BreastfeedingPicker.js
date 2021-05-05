@@ -10,10 +10,14 @@ import {
 import {personalCSS} from '../components/style';
 import {picker} from '../components/style';
 
-const BreastfeedingPicker = ({value}) => {
+const BreastfeedingPicker = ({value, getBreastfeedingInfo}) => {
 
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+  const breastfeedingInfo = () => {
+    getBreastfeedingInfo(value, 'preg-picker')
+  }
 
   const onSelect = (value) => {
     console.log(value)
@@ -47,6 +51,7 @@ const BreastfeedingPicker = ({value}) => {
           value={isEnabled}
           style={picker.switch}
           onSelect={(value)=> setIsEnabled(isEnabled)}
+          onChange={(value)=> getBreastfeedingInfo(!isEnabled)}
         />
       </View>
     </View>
